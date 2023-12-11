@@ -1,7 +1,11 @@
 import { PiTextAlignLeftDuotone, PiTextAlignCenterDuotone, PiTextAlignRightDuotone } from 'react-icons/pi'
 import type { TextEditorPropTypes, TextAlignType } from '../../lib/types'
+import DownloadButton from '../DownloadButton';
 
 export default function TextEditorEditor({ title, setTitle, font, setFont, align, setAlign, textarea, setTextarea }: TextEditorPropTypes) {
+
+  const textcontent = `${title}\n${textarea}`
+
   return (
     <div className="texteditor p-8">
 
@@ -46,7 +50,7 @@ export default function TextEditorEditor({ title, setTitle, font, setFont, align
         <label className="caption">Text</label>
         <textarea value={textarea} onChange={(e) => { setTextarea(e.target.value); }} style={{ height: '250px' }} />
       </div>
-
+      <DownloadButton textcontent={textcontent} />
     </div>
   );
 }

@@ -2,6 +2,7 @@ import React from 'react'
 import { useMarkdownContext } from '../../context/MarkdownContext';
 import { EditorPropTypes } from '../../lib/types';
 import Header from './MarkdownEditorHeader'
+import DownloadButton from '../DownloadButton';
 
 export default function MarkdownEditorEditor({
   words,
@@ -21,15 +22,6 @@ export default function MarkdownEditorEditor({
     setCharacters(handleCharacterCount(typedValue));
   }
 
-  function downloadNewFile() {
-    const link = document.createElement('a');
-    const file = new Blob([markdown as BlobPart], { type: 'text/plain' });
-    link.href = URL.createObjectURL(file);
-    link.download = 'untitled_markdown_file.md';
-    link.click()
-    URL.revokeObjectURL(link.href);
-  }
-
   const title = "Editor"
 
 
@@ -47,10 +39,7 @@ export default function MarkdownEditorEditor({
           onChange={handleMarkdownUpdate}
         />
         <div className="flex justify-center">
-          <button
-            className="download"
-            onClick={downloadNewFile}
-          >download</button>
+          <DownloadButton textcontent={markdown} />
         </div>
       </section>
     </div>
